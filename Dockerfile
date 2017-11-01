@@ -6,7 +6,7 @@ ARG NIKTO_URL="https://github.com/sullo/nikto/archive/${NIKTO_VERSION}.tar.gz"
 ARG NIKTO_DIR="/nikto"
 
 RUN \
-  apk --update --no-cache add perl openssl perl-net-ssleay ca-certificates && \
+  apk add --upgrade --no-cache perl openssl perl-net-ssleay ca-certificates && \
   update-ca-certificates && \
   wget https://github.com/sullo/nikto/archive/${NIKTO_VERSION}.tar.gz -O /tmp/nikto.tar.gz && \
   adduser -D -h ${NIKTO_DIR} nikto && \
@@ -15,8 +15,7 @@ RUN \
   chmod 755 ${NIKTO_DIR}/program/nikto.pl && \
   chown -R nikto:nikto ${NIKTO_DIR} && \
   mkdir /work && \
-  chown nikto:nikto /work && \
-  rm -rf /var/cache/apk/*
+  chown nikto:nikto /work
 
 USER nikto
 WORKDIR ${NIKTO_DIR}/program
