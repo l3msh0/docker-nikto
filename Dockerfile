@@ -14,9 +14,9 @@ RUN \
   rm /tmp/nikto.tar.gz && \
   chmod 755 ${NIKTO_DIR}/program/nikto.pl && \
   chown -R nikto:nikto ${NIKTO_DIR} && \
-  rm -rf /var/cache/apk/* && \
   mkdir /work && \
-  chown nikto:nikto /work
+  chown nikto:nikto /work && \
+  rm -rf /var/cache/apk/*
 
 USER nikto
 WORKDIR ${NIKTO_DIR}/program
